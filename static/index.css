@@ -4,29 +4,29 @@ body {
     align-items: center;
 }
 
-.toolbar {
-    margin-bottom: 10px;
-}
-
 .logs-item-label {
     text-align: right;
 }
 
-table {
+#add-timing-logs {
     min-width: 300px;
     border: 2px solid black;
     border-collapse: collapse;
 }
 
-td {
+#add-timing-logs td {
     border: 2px solid black;
     padding: 5px;
 }
 
-tfoot {
+#add-timing-logs tfoot {
     text-align: right;
 }
 
-input {
+#add-timing-logs input {
     min-width: 200px;
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
 }
