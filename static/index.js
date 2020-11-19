@@ -47,7 +47,7 @@ $(document)
         // 计时
         buttonStartTiming.click(function () {
             itemStartTime.text(currentTime());
-            // 禁用开始按钮，启用暂停和中止
+            // 禁用开始按钮，启用暂停、中止
             buttonStartTiming.attr('disabled', 'true');
             buttonPauseTiming.removeAttr('disabled');
             buttonStopTiming.removeAttr('disabled');
@@ -88,11 +88,11 @@ $(document)
             itemEndTime.text(currentTime());
             resetButtons();
             resetTimers();
+            // 此时允许提交
+            buttonSubmitTiming.removeAttr('disabled');
         });
         buttonResetTiming.click(function () {
-            resetFormItems();
-            resetButtons();
-            resetTimers();
+            resetAllFields();
         })
         buttonSubmitTiming.click(function () {
             var startTime = itemStartTime.text(),
@@ -111,6 +111,7 @@ $(document)
             }), function (_, status) {
                 if (status === 'success') {
                     alert('保存成功');
+                    resetAllFields();
                 } else {
                     alert('保存失败，请重试');
                 }
@@ -118,6 +119,12 @@ $(document)
         })
 
         // 重置方法
+        function resetAllFields() {
+            resetFormItems();
+            resetButtons();
+            resetTimers();
+        }
+
         function resetFormItems() {
             itemStartTime.text('');
             itemPauseTime.text('');
@@ -134,6 +141,7 @@ $(document)
             buttonStopTiming.attr('disabled', 'true');
             // 恢复按钮状态
             buttonPauseTiming.text('暂停计时 ⏸');
+            buttonSubmitTiming.attr('disabled', 'true');
         }
 
         function resetTimers() {
