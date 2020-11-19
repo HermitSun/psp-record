@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PSP Record - History</title>
+    <link href="{{ url_for('static', path='/history.css') }}" rel="stylesheet">
+</head>
+<body>
+<header class="margin-bottom">
+    <a href="/">新增日志</a>
+    <a href="/statistics">统计结果</a>
+</header>
+<label class="margin-bottom">
+    <a href="/history">今天</a>
+    <a href="/history/last-2-days" title="指昨天和今天">近两天</a>
+    <a href="/history/last-week">近七天</a>
+</label>
+{% for date, logs in _data.date_logs.items() %}
+    <h3>{{ date }}</h3>
+    {% if logs | length is equalto 0 %}
+        <p>无日志</p>
+    {% endif %}
+    {% if logs | length is not equalto 0 %}
+        <div class="timing-logs-stats">
+            <div>总工作时间：{{ _data.date_stats[date].total_pure_time }}</div>
+            <div>总中断时间：{{ _data.date_stats[date].total_pause_time }}</div>
+        </div>
+        {% for log in logs %}
+            <table class="timing-logs margin-bottom">
+                <thead>
+                <tr>
+                    <th colspan="2">时间日志</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="logs-item-label">序号</td>
+                    <td>{{ loop.index }}</td>
+                </tr>
+                <tr>
+                    <td class="logs-item-label">所属阶段</td>
+                    <td>{{ log.belong }}</td>
+                </tr>
+                <tr>
+                    <td class="logs-item-label">开始时间</td>
+                    <td>{{ log.start_time }}</td>
+                </tr>
+                <tr>
+                    <td class="logs-item-label">结束时间</td>
+                    <td>{{ log.end_time }}</td>
+                </tr>
+                <tr>
+                    <td class="logs-item-label">中断时间</td>
+                    <td>{{ log.pause_time }}</td>
+                </tr>
+                <tr>
+                    <td class="logs-item-label">净时间</td>
+                    <td>{{ log.pure_time }}</td>
+                </tr>
+                <tr>
+                    <td class="logs-item-label">备注信息</td>
+                    <td>{{ log.backlog }}</td>
+                </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+</body>
+</html>
