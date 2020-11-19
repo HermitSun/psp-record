@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PSP Record</title>
+    <link rel="preconnect" href="https://cdn.bootcdn.net/" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net/">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="{{ url_for('static', path='/index.css') }}" rel="stylesheet">
+</head>
+<body>
+<header class="toolbar">
+    <a href="/history">历史日志</a>
+    <a href="/statistics">统计结果</a>
+</header>
+<div class="toolbar">
+    <button id="start-timing">开始计时 ▶</button>
+    <button id="pause-timing" disabled>暂停计时 ⏸</button>
+    <button id="end-timing" disabled>中止计时 ⏹</button>
+</div>
+<!--增加时间日志-->
+<table id="add-timing-logs">
+    <thead>
+    <tr>
+        <th colspan="2">时间日志</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="logs-item-label">所属阶段</td>
+        <td>
+            <label>
+                <input type="text"
+                       placeholder="请输入所属阶段，可不填"
+                       id="logs-item-belong">
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td class="logs-item-label">开始时间</td>
+        <td id="logs-item-start-time"></td>
+    </tr>
+    <tr>
+        <td class="logs-item-label">结束时间</td>
+        <td id="logs-item-end-time"></td>
+    </tr>
+    <tr>
+        <td class="logs-item-label">中断时间</td>
+        <td id="logs-item-pause-time"></td>
+    </tr>
+    <tr>
+        <td class="logs-item-label">净时间</td>
+        <td id="logs-item-pure-time"></td>
+    </tr>
+    <tr>
+        <td class="logs-item-label">备注信息</td>
+        <td>
+            <label>
+                <input type="text"
+                       placeholder="请输入备注信息，如中断原因"
+                       id="logs-item-backlog">
+            </label>
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2" id="add-timing-logs-toolbar">
+            <button type="reset">重置</button>
+            <button type="submit">保存</button>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+<!--交互逻辑-->
+<script src="{{ url_for('static', path='/index.js') }}"></script>
+</body>
+</html>

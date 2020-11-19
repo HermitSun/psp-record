@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+
+# IDE conf
+.idea/
+.vscode/
+
+# logs
+*.log
+
+# python
+venv/
+/**/__pycache__/
