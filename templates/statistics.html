@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>PSP Record - Statistics</title>
+    <link rel="preconnect" href="https://cdn.bootcdn.net/" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net/">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
+    <link href="{{ url_for('static', path='/statistics.css') }}" rel="stylesheet">
 </head>
 <body>
-
+<div id="pure-time" style="width: 800px; height: 600px;"></div>
+<script>
+    var pureTimeChart = echarts.init(document.getElementById('pure-time'));
+    var option = {
+        title: {
+            text: '近七日净工作时间'
+        },
+        xAxis: {
+            type: 'category',
+            data: {{ _data.last_week_list | safe }}
+        },
+        yAxis: {
+            type: 'value'
+        },
+        legend: {
+            data: ['分钟']
+        },
+        tooltip: {},
+        series: [{
+            data: {{ _data.last_week_statistics.pure_time_list | default([]) }},
+            type: 'line'
+        }]
+    };
+    pureTimeChart.setOption(option);
+</script>
 </body>
 </html>
